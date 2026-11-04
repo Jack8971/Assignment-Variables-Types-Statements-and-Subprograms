@@ -10,7 +10,7 @@ types, binding, scoping, referencing and subprograms. Both programs read and wri
 **same JSON data file**.
 
 > Admin-only tool: students cannot enroll themselves.
-
+ 
 ---
 
 ## Team
