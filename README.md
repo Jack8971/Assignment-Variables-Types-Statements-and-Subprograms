@@ -94,6 +94,9 @@ sait-enrollment-system/
 │   └── students.sample.json     # clean sample data for resetting tests
 ├── docs/
 │   └── part1_pseudocode.md
+├── tests/
+│   ├── README.md                # quick test guide
+│   └── compare_json_output.py   # compares two saved data files
 ├── cpp/
 │   ├── CMakeLists.txt
 │   ├── third_party/nlohmann/json.hpp
@@ -193,7 +196,9 @@ Reset the data (copy `data/students.sample.json` over `data/students.json`), the
 - Make a change, then try Reload and closing the window; the unsaved-changes questions must appear
 - Start with a missing file, an empty file and a malformed file; the program must not crash or overwrite the file
 - Save in one program and open the same file in the other; both must load it with no errors
-- After the same add / modify / remove steps in each program, compare the saved files: `diff fileA.json fileB.json` must show no differences
+- After the same add / modify / remove steps in each program, compare the saved files with `python tests/compare_json_output.py fileA.json fileB.json`; it must report no differences
+
+Step-by-step instructions are in [`tests/README.md`](tests/README.md).
 
 ## Design Decisions
 
