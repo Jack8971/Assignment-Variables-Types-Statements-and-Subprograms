@@ -132,7 +132,56 @@ Model          Student
 Validation     InputValidation          (pure functions, no GUI code)
 ```
 
-Both implementations mirror this layering file-for-file. The pseudocode in [`docs/part1_pseudocode.md`](docs/part1_pseudocode.md) follows the same structure.
+Both implementations mirror this layering file-for-file. The pseudocode in [`docs/part1_pseudocode.md`](docs/part1_pseudocode.md) was written first and describes the data, the add / modify / remove logic, validation, the data file and the window actions that these layers implement.
+
+---
+
+## Git Workflow and Branches
+
+`main` always holds working, reviewed code. Each assignment part has one branch (Part 1 = `parta`, Part 2 = `partb`, and so on), and work reaches `main` through a pull request.
+
+| Branch | Assignment part | What it holds | Owner |
+|--------|-----------------|---------------|-------|
+| `main` | — | Final, working code only. No direct commits | All members |
+| `feature/parta` | Part 1 | Pseudocode (`docs/part1_pseudocode.md`) | Jackson / Kunj |
+| `feature/partb` | Part 2 | C++ program (`cpp/`) | Jackson / Kunj |
+| `feature/partc` | Part 3 | Python program (`python/`) and `tests/` | Temi / Zeynep / Sehabir |
+| `feature/partd` | Part 4 | Comparison table drafts | All members |
+| `feature/parte` | Part 5 | Peer review drafts | All members |
+
+Parts 4 and 5 are Word documents submitted through Brightspace, so `partd` and `parte` only hold drafts and are not part of the final repo contents.
+
+### Day-to-day workflow
+
+```bash
+git checkout main
+git pull                              # start from the latest main
+git checkout -b feature/partb         # create your branch (first time only)
+
+# ... write code, then commit often with a clear message
+git add cpp/src/Student.h
+git commit -m "Add Student struct with fields and constants"
+
+git push -u origin feature/partb      # push the branch
+# On GitHub: open a Pull Request into main, a teammate reviews, then merge
+
+git checkout feature/partb
+git pull origin main                  # bring merged changes back into your branch
+```
+
+### Rules
+
+- Only these branches: `main` and `feature/parta` to `feature/parte`
+- Commit your own work from your own GitHub account, since the history is evidence for the Part 5 peer review
+- Every pull request is reviewed by at least one teammate before merging
+- Only merge code that builds and runs; pull `main` into your branch first to catch conflicts
+- Write commit messages as short actions: "Add search by program", "Fix leap-year check"
+- Add the `[ORIGINAL]` / `[EXTERNAL-MODIFIED]` comments before you commit, not afterwards
+
+### Suggested merge order
+
+1. `feature/parta` (pseudocode first, since Parts 2 and 3 are built from it)
+2. `feature/partb` and `feature/partc` (in parallel)
 
 ---
 
@@ -218,7 +267,7 @@ As required by the assignment, code that came from an external tool or was adapt
 // [EXTERNAL-MODIFIED]   from a tool/online source, heavily modified by us (python: # ...)
 ```
 
-An AI assistant (Claude, by Anthropic) was used to help produce the structure of this README, the assignment outline, the draft JSON data format and the first draft of the pseudocode. The team reviewed and adapted this material.
+An AI assistant (Claude, by Anthropic) was used to help produce the structure of this README, the assignment outline, the draft JSON data format sample. The team reviewed and adapted this material.
 
 TODO: list which source files (if any) contain tool-assisted code, who modified them, and how.
 
