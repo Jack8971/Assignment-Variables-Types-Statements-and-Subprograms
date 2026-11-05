@@ -1,3 +1,4 @@
+# [EXTERNAL-MODIFIED] used CLAUDE to generate the following CMakeLists.txt file because I do not know how to write it. I will review it and make any necessary changes.
 cmake_minimum_required(VERSION 3.16)
 project(EnrollmentSystem LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
