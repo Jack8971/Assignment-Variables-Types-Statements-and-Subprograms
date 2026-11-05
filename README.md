@@ -1,4 +1,4 @@
-# Assignment-Variables-Types-Statements-and-Subprograms(test)
+# Assignment-Variables-Types-Statements-and-Subprograms
 # SAIT Student Enrollment Management System
 
 > Group 2 · CMPS 3020 BSA · Instructor: Omar Wahdan
@@ -15,7 +15,7 @@ A prototype enrollment management system for SAIT administrative staff, implemen
 | Name | GitHub | Primary Contributions |
 |------|--------|-----------------------|
 | Jackson Battista | @Jack8971 |  Part 1 pseudocode,  Part 2: C++ program (`PartB`) |
-| Kunj Kalpeshkumar Patel |  Part 1 pseudocode,  @kunj406962 | Part 2: C++ program (`PartB`) |
+| Kunj Kalpeshkumar Patel | @kunj406962 |  Part 1 pseudocode,  Part 2: C++ program (`PartB`) |
 | Temi Bankole | @TODO | Part 3: Python program (`PartC`) |
 | Zeynep Ozdemir | @TODO | Part 3: Python program (`PartC`) |
 | Sehabir | @TODO | Part 3: Python program (`PartC`) |
