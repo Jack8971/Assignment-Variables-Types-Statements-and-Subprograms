@@ -1,57 +1,196 @@
 # Assignment-Variables-Types-Statements-and-Subprograms
-### (note add 'feature/part-b' etc and so forth)
 # SAIT Student Enrollment Management System
 
-> Group 2 — Variables, Types, Statements and Subprograms
+> Group 2 · CMPS 3020 BSA · Instructor: Omar Wahdan
+> Assignment: Variables, Types, Statements and Subprograms
 
-A prototype enrollment management system for SAIT administrative staff, implemented twice
-(**C++ / Qt 6** and **Python / PySide6**) so the two languages can be compared on variables,
-types, binding, scoping, referencing and subprograms. Both programs read and write the
-**same JSON data file**.
+A prototype enrollment management system for SAIT administrative staff, implemented twice, in **C++** (`PartB`) and in **Python** (`PartC`), so the two languages can be compared on variables, types, binding, scoping, referencing and subprograms. Both programs follow the same pseudocode (`docs/part1_pseudocode.md`) and must produce the same output.
 
 > Admin-only tool: students cannot enroll themselves.
- 
+
 ---
 
 ## Team
 
 | Name | GitHub | Primary Contributions |
 |------|--------|-----------------------|
-| Jackson / Kunj | @TODO | Part 2 — C++ program (Qt GUI, core logic, JSON storage) |
-| Temi / Zeynep / Sehabir | @TODO | Part 3 — Python program (PySide6 GUI, core logic, JSON storage) |
-| All members | — | Part 1 pseudocode, Part 4 comparison, Part 5 peer review, testing |
+| Jackson Battista | @Jack8971 |  Part 1 pseudocode,  Part 2: C++ program (`PartB`) |
+| Kunj Kalpeshkumar Patel | @kunj406962 |  Part 1 pseudocode,  Part 2: C++ program (`PartB`) |
+| Temi Bankole | @TODO | Part 3: Python program (`PartC`) |
+| Zeynep Ozdemir | @TODO | Part 3: Python program (`PartC`) |
+| Sehabir | @TODO | Part 3: Python program (`PartC`) |
+| All members | |Part 4 comparison, Part 5 peer review, testing |
+
+## Assignment Parts
+
+| Assignment part | Letter | What | Where |
+|---|---|---|---|
+| Part 1 | A | Pseudocode | `docs/part1_pseudocode.md` (Word copy in the Brightspace ZIP) |
+| Part 2 | B | C++ program | `PartB/` |
+| Part 3 | C | Python program | `PartC/` |
+| Part 4 | D | Comparison table, C++ vs Python | Word document (Brightspace ZIP) |
+| Part 5 | E | Peer review | Word document (Brightspace ZIP) |
 
 ---
 
-## Features
+## What the Program Does
 
-- [ ] Add a student record
-- [ ] Modify a student record
-- [ ] Remove a student record (with confirmation)
-- [ ] View all students in a table
-- [ ] Search / filter students (id, name or program)
-- [ ] Input validation (names, DOB, GPA, semester, courses)
-- [ ] Load from / save to shared `data/students.json`
-- [ ] Unsaved-changes protection (`*` in the title, confirm on reload and close)
-- [ ] Identical behaviour and layout in the C++ and Python GUIs
+A console menu program for administrative staff. Records are kept in memory while the program runs.
+
+```
+===== SAIT Enrollment Management =====
+1. Add student
+2. Modify student
+3. Remove student
+4. View all students
+0. Exit
+Enter choice:
+```
+
+- [ ] **Add** a student (every field is checked and re-requested until valid)
+- [ ] **Modify** one field of an existing student (or cancel)
+- [ ] **Remove** a student after a yes/no confirmation
+- [ ] **View** all students
+- [ ] Identical prompts, messages and results in the C++ and Python programs
+
+Planned extras, not in the Part 1 pseudocode (mark them in the code as additions):
+
+- [ ] Search by id, name or program
+- [ ] Load from / save to the shared JSON data file (see [Data Files](#data-files))
 
 ## Student Record Fields
 
-| Field | JSON key | JSON type | C++ type | Python type | Rules |
-|-------|----------|-----------|----------|-------------|-------|
-| Student ID | `id` | integer | `int` | `int` | auto-generated from 1001, unique, never reused |
-| First name | `firstName` | string | `std::string` | `str` | 1–50 chars; letters, spaces, hyphens, apostrophes |
-| Last name | `lastName` | string | `std::string` | `str` | same as first name |
-| Date of birth | `dateOfBirth` | string | `std::string` | `str` | `YYYY-MM-DD`, real date, not in future, age 16–100 |
-| Gender | `gender` | string | `std::string` | `str` | Female, Male, Non-binary, Prefer not to say |
-| Previous GPA | `previousGpa` | number | `double` | `float` | 0.00 – 4.00 |
-| Current semester | `currentSemester` | integer | `int` | `int` | 1 – 8 |
-| Program | `program` | string | `std::string` | `str` | Software Development, Information Technology, Cybersecurity, Data Analytics, Business Administration, Computer Systems Technology |
-| Number of courses | `numberOfCourses` | integer | `int` | `int` | 1 – 8 |
+| Field | Type | Rules |
+|-------|------|-------|
+| Student ID | integer | assigned automatically starting at 1001, unique, never reused |
+| First name | string | 1–50 characters: letters, spaces, hyphens, apostrophes |
+| Last name | string | same as first name |
+| Date of birth | string `YYYY-MM-DD` | must be a real calendar date (leap years handled) |
+| Gender | string | one of the fixed `GENDERS` list in the pseudocode |
+| Previous GPA | real | 0.0 – 4.0 |
+| Current semester | integer | 1 – 8 |
+| Program | string | one of the fixed `PROGRAMS` list in the pseudocode |
+| Number of courses | integer | 1 – 8 |
 
-## Data File Format
+---
 
-Both programs use one file, `data/students.json`:
+## Repository Structure
+
+```
+Assignment-Variables-Types-Statements-and-Subprograms/
+├── README.md
+├── data/
+│   ├── students.json            # team's own student data
+│   ├── students.sample.json     # AI-assisted sample data (see AI_use.txt)
+│   └── AI_use.txt               # which data files used AI help
+├── docs/
+│   └── part1_pseudocode.md      # Part 1 pseudocode
+├── PartB/                       # Part 2: C++
+│   ├── CMakeLists.txt
+│   ├── include/
+│   │   ├── ConsoleUI.h          # menu and prompts
+│   │   ├── Date.h               # date of birth
+│   │   ├── EnrollmentManager.h  # add / modify / remove / find
+│   │   ├── InputValidation.h    # input checking
+│   │   ├── Person.h             # personal details
+│   │   └── Student.h            # student record
+│   └── src/
+│       └── main.cpp
+├── PartC/                       # Part 3: Python
+│   ├── main.py
+│   ├── student.py
+│   ├── enrollment_manager.py
+│   ├── input_validation.py
+│   ├── json_storage.py
+│   ├── main_window.py
+│   ├── student_dialog.py
+│   └── requirements.txt
+└── tests/
+    ├── compare_json_output.py   # compares two saved data files
+    └── test_scenarios.md        # test inputs and expected results
+```
+
+---
+
+## Git Workflow and Branches
+
+`main` always holds working, reviewed code. Each assignment part has its own branch, and work reaches `main` through a pull request.
+
+| Branch | Assignment part | What it holds | Owner |
+|--------|-----------------|---------------|-------|
+| `main` | | Final, working code only. No direct commits | All members |
+| `feature/part-a` | Part 1 | Pseudocode (`docs/part1_pseudocode.md`) | Jackson / Kunj |
+| `feature/part-b` | Part 2 | C++ program (`PartB/`) | Jackson / Kunj |
+| `feature/part-c` | Part 3 | Python program (`PartC/`) and `tests/` | Temi / Zeynep / Sehabir |
+| `feature/part-d` | Part 4 | Comparison table drafts | All members |
+| `feature/part-e` | Part 5 | Peer review drafts | All members |
+
+Parts 4 and 5 are Word documents submitted through Brightspace, so `feature/part-d` and `feature/part-e` only hold drafts and are not part of the final repo contents.
+
+### Day-to-day workflow
+
+```bash
+git checkout main
+git pull                              # start from the latest main
+git checkout -b feature/part-b        # create your branch (first time only)
+
+# ... write code, then commit often with a clear message
+git add PartB/include/Student.h
+git commit -m "Add Student class with fields"
+
+git push -u origin feature/part-b     # push the branch
+# On GitHub: open a Pull Request into main, a teammate reviews, then merge
+
+git checkout feature/part-b
+git pull origin main                  # bring merged changes back into your branch
+```
+
+### Rules
+
+- Only these branches: `main` and `feature/part-a` to `feature/part-e`
+- Commit your own work from your own GitHub account, since the history is evidence for the Part 5 peer review
+- Every pull request is reviewed by at least one teammate before merging
+- Only merge code that builds and runs; pull `main` into your branch first to catch conflicts
+- Write commit messages as short actions: "Add remove student", "Fix leap-year check"
+- Add the `[ORIGINAL]` / `[EXTERNAL-MODIFIED]` comments before you commit, not afterwards
+
+### Suggested merge order
+
+1. `feature/part-a` (pseudocode first, since Parts 2 and 3 are built from it)
+2. `feature/part-b` and `feature/part-c` (in parallel)
+
+---
+
+## Requirements
+
+| | C++ (`PartB`) | Python (`PartC`) |
+|---|---|---|
+| Language | C++17 | Python 3.10+ |
+| Libraries | standard library | standard library |
+| Build | CMake 3.16+ and a C++17 compiler | none |
+
+## Build & Run
+
+### C++
+```bash
+cd PartB
+cmake -B build
+cmake --build build
+./build/<executable>          # Windows: build\Debug\<executable>.exe
+```
+The executable name is set in `PartB/CMakeLists.txt` (TODO: add the name here once it is written).
+
+### Python
+```bash
+cd PartC
+python main.py
+```
+
+---
+
+## Data Files
+
+`data/students.sample.json` and `data/students.json` hold starting student records in JSON. They let both programs begin with the same data so their results can be compared. Loading and saving is a planned extra (see above); the Part 1 pseudocode keeps records in memory only.
 
 ```json
 {
@@ -72,191 +211,50 @@ Both programs use one file, `data/students.json`:
 }
 ```
 
-- Keys use camelCase in the file; Python converts to `snake_case` only when reading and writing.
-- Files are written with 2-space indent, UTF-8, keys sorted A–Z, a newline at the end and GPA rounded to 2 decimals, so a file saved by either program is identical.
-- `nextStudentId` is stored in the file so ids never collide and are never reused.
-- A missing or empty file is created as `{"nextStudentId": 1001, "students": []}`.
-- A malformed file, a missing or wrongly typed key, an invalid value or a duplicate id shows an error message. The file is never overwritten, and editing is disabled until a successful Reload.
-- Saving writes a temporary file and then replaces the real one, so a crash cannot corrupt the data.
-
-`data/students.sample.json` holds 5 sample students. Copy it over `data/students.json` to reset.
+- Keys use camelCase; Python converts to `snake_case` when reading and writing.
+- `nextStudentId` must be higher than every existing `id`.
+- Files are written with 2-space indent, sorted keys and a newline at the end, so a file saved by either program is identical and `tests/compare_json_output.py` can compare them.
 
 ---
-
-## Repository Structure
-
-```
-sait-enrollment-system/
-├── README.md
-├── .gitignore
-├── data/
-│   ├── students.json            # shared live data file (used by BOTH programs)
-│   └── students.sample.json     # clean sample data for resetting tests
-├── docs/
-│   └── part1_pseudocode.md
-├── tests/
-│   ├── README.md                # quick test guide
-│   └── compare_json_output.py   # compares two saved data files
-├── cpp/
-│   ├── CMakeLists.txt
-│   ├── third_party/nlohmann/json.hpp
-│   └── src/
-│       ├── main.cpp
-│       ├── Student.h / Student.cpp
-│       ├── EnrollmentManager.h / .cpp
-│       ├── JsonStorage.h / .cpp
-│       ├── InputValidation.h / .cpp
-│       ├── MainWindow.h / .cpp
-│       └── StudentDialog.h / .cpp
-└── python/
-    ├── requirements.txt
-    ├── main.py
-    ├── student.py
-    ├── enrollment_manager.py
-    ├── json_storage.py
-    ├── input_validation.py
-    ├── main_window.py
-    └── student_dialog.py
-```
-
-## Architecture
-
-```
-GUI layer      MainWindow, StudentDialog
-     │
-Logic layer    EnrollmentManager        (add / modify / remove / search)
-     │
-Data layer     JsonStorage              (load / save students.json)
-     │
-Model          Student
-Validation     InputValidation          (pure functions, no GUI code)
-```
-
-Both implementations mirror this layering file-for-file. The pseudocode in [`docs/part1_pseudocode.md`](docs/part1_pseudocode.md) was written first and describes the data, the add / modify / remove logic, validation, the data file and the window actions that these layers implement.
-
----
-
-## Git Workflow and Branches
-
-`main` always holds working, reviewed code. Each assignment part has one branch (Part 1 = `parta`, Part 2 = `partb`, and so on), and work reaches `main` through a pull request.
-
-| Branch | Assignment part | What it holds | Owner |
-|--------|-----------------|---------------|-------|
-| `main` | — | Final, working code only. No direct commits | All members |
-| `feature/parta` | Part 1 | Pseudocode (`docs/part1_pseudocode.md`) | Jackson / Kunj |
-| `feature/partb` | Part 2 | C++ program (`cpp/`) | Jackson / Kunj |
-| `feature/partc` | Part 3 | Python program (`python/`) and `tests/` | Temi / Zeynep / Sehabir |
-| `feature/partd` | Part 4 | Comparison table drafts | All members |
-| `feature/parte` | Part 5 | Peer review drafts | All members |
-
-Parts 4 and 5 are Word documents submitted through Brightspace, so `partd` and `parte` only hold drafts and are not part of the final repo contents.
-
-### Day-to-day workflow
-
-```bash
-git checkout main
-git pull                              # start from the latest main
-git checkout -b feature/partb         # create your branch (first time only)
-
-# ... write code, then commit often with a clear message
-git add cpp/src/Student.h
-git commit -m "Add Student struct with fields and constants"
-
-git push -u origin feature/partb      # push the branch
-# On GitHub: open a Pull Request into main, a teammate reviews, then merge
-
-git checkout feature/partb
-git pull origin main                  # bring merged changes back into your branch
-```
-
-### Rules
-
-- Only these branches: `main` and `feature/parta` to `feature/parte`
-- Commit your own work from your own GitHub account, since the history is evidence for the Part 5 peer review
-- Every pull request is reviewed by at least one teammate before merging
-- Only merge code that builds and runs; pull `main` into your branch first to catch conflicts
-- Write commit messages as short actions: "Add search by program", "Fix leap-year check"
-- Add the `[ORIGINAL]` / `[EXTERNAL-MODIFIED]` comments before you commit, not afterwards
-
-### Suggested merge order
-
-1. `feature/parta` (pseudocode first, since Parts 2 and 3 are built from it)
-2. `feature/partb` and `feature/partc` (in parallel)
-
----
-
-## Requirements
-
-| | C++ | Python |
-|---|---|---|
-| Language | C++17 | Python 3.10+ |
-| GUI | Qt 6 (Widgets) | PySide6 |
-| JSON | nlohmann/json (bundled, header-only) | built-in `json` |
-| Build | CMake 3.16+ and a C++17 compiler | none |
-
-## Build & Run
-
-### C++
-```bash
-cd cpp
-cmake -B build
-cmake --build build
-./build/enrollment            # Windows: build\Debug\enrollment.exe
-```
-If CMake cannot find Qt, add `-DCMAKE_PREFIX_PATH=/path/to/Qt/6.x.x/<kit>` to the first command.
-
-### Python
-```bash
-cd python
-pip install -r requirements.txt
-python main.py
-```
-
-### Choosing the data file
-
-Both programs load `../data/students.json` by default. To use a different file, give its path as the first argument:
-
-```bash
-./build/enrollment ../data/students.sample.json
-python main.py ../data/students.sample.json
-```
-
----
-
-## Usage
-
-1. Start either program. The table shows every student in the data file.
-2. **Add**: fill in the dialog and press OK. Invalid input shows a message and keeps the dialog open.
-3. **Modify**: select a row, press Modify, change values, press OK.
-4. **Remove**: select a row, press Remove, confirm with Yes.
-5. **Search**: type an id, name or program and press Search (or Enter). **Clear** shows everyone again.
-6. **Save** writes the data file. A `*` in the window title means there are unsaved changes. **Reload** re-reads the file.
-
-TODO: add screenshots of both GUIs side by side.
 
 ## Testing
 
-Reset the data (copy `data/students.sample.json` over `data/students.json`), then run the same steps in **both** programs:
+Run the same typed input through **both** programs and compare what they print:
 
-- Add a valid student, then try invalid names (empty, digits, symbols); the dialog must stay open with the message
-- Modify a student; try Cancel and confirm nothing changes
-- Remove a student with Yes and with No; try Modify and Remove with nothing selected
-- Search by id, first name, last name and program, in upper and lower case; try a term with no match; press Clear
-- Make a change, then try Reload and closing the window; the unsaved-changes questions must appear
-- Start with a missing file, an empty file and a malformed file; the program must not crash or overwrite the file
-- Save in one program and open the same file in the other; both must load it with no errors
-- After the same add / modify / remove steps in each program, compare the saved files with `python tests/compare_json_output.py fileA.json fileB.json`; it must report no differences
+```bash
+cd PartB && ./build/<executable> < ../tests/input1.txt > ../cpp_output.txt
+cd ../PartC && python main.py < ../tests/input1.txt > ../py_output.txt
+diff ../cpp_output.txt ../py_output.txt        # no output means they match
+```
 
-Step-by-step instructions are in [`tests/README.md`](tests/README.md).
+Write each scenario's inputs and expected results in `tests/test_scenarios.md`. Things to test in both programs:
+
+- Add a valid student, then bad input: empty name, name with digits, GPA 5, semester 9, courses 0, date `2023-02-30`, letters where a number is expected. Each must re-ask, not crash.
+- Modify every field, and cancel with `0`
+- Remove with `y` and with `n`; try an id that does not exist
+- View all with no students and with several
+- Menu: enter a number outside 0–4 and text instead of a number
+
+### Test results
+
+| Test | C++ | Python |
+|---|---|---|
+| Add valid student | | |
+| Add with invalid input (re-asks) | | |
+| Modify each field | | |
+| Modify and cancel | | |
+| Remove with y / n | | |
+| Remove unknown id | | |
+| View all (empty and with data) | | |
+| Invalid menu choice | | |
+| Same input gives same output in both | | |
 
 ## Design Decisions
 
-- **Data structures:** students are held in a dynamic container (`std::vector<Student>` in C++, `list[Student]` in Python); gender and program choices are fixed-size arrays/constant lists. A `Student` struct (C++) or `@dataclass` (Python) is the record type.
-- **Layering:** GUI, logic, data, model and validation are separate files so the language concepts (binding, scoping, referencing, argument passing) stay visible and the logic is testable without a GUI.
-- **Static vs dynamic binding:** C++ types are fixed at compile time; Python types are bound at run time. Both are compared in the Part 4 document.
-- **Validation:** pure functions in `InputValidation` return a result and an error message; the same rules run when the user types a record and when a file is loaded.
-- **Save strategy:** manual Save with an unsaved-changes marker and confirmations on Reload and Close.
-- **Failed loads are safe:** if the file cannot be read, nothing is overwritten and editing is disabled until a successful Reload.
+- **Containers:** students are held in a dynamic list (`std::vector` in C++, `list` in Python); gender and program choices are fixed-size arrays. A student record groups the fields.
+- **Subprograms:** add, modify, remove, find, display and each input check are separate subprograms, as in the pseudocode. The Part 4 document compares how each language passes arguments (by value, by reference).
+- **Validation:** every input subprogram repeats until the value is valid, so invalid data never reaches the list.
+- **Static vs dynamic binding:** C++ types are fixed at compile time; Python types are bound at run time. Part 4 compares both.
 
 ## Code Attribution & AI Use
 
@@ -264,23 +262,22 @@ As required by the assignment, code that came from an external tool or was adapt
 
 ```
 // [ORIGINAL]            written by our team
-// [EXTERNAL-MODIFIED]   from a tool/online source, heavily modified by us (python: # ...)
+// [EXTERNAL-MODIFIED]   from a tool/online source, heavily modified by us (Python: # ...)
 ```
 
-An AI assistant (Claude, by Anthropic) was used to help produce the structure of this README, the assignment outline, the draft JSON data format sample. The team reviewed and adapted this material.
+An AI assistant (Claude, by Anthropic) was used to help produce the structure of this README, the assignment outline, a sample data in `data/students.sample.json`. The team reviewed and adapted this material. `data/students.json` was written by the team without AI. Details for the data files are in [`data/AI_use.txt`](data/AI_use.txt).
 
 TODO: list which source files (if any) contain tool-assisted code, who modified them, and how.
 
 ## Known Limitations
 
-- Both programs must not be open on the same data file at the same time (no file locking; the last save wins).
-- Names accept letters, spaces, hyphens and apostrophes only (no digits or other punctuation).
-- Messages are not pluralised (for example "Students loaded: 1").
-- The gender and program lists are fixed in the code, not read from the file.
+- No login: the program assumes administrative staff run it, and it has no function that lets a student enroll themselves.
+- Students are found by a linear search through the list, which is fine for a prototype-sized list.
+- If JSON saving is added, do not run both programs on the same data file at the same time (no file locking; the last save wins).
 
 ## Documentation (submitted via Brightspace)
 
-- Part 1: Pseudocode — also in [`docs/part1_pseudocode.md`](docs/part1_pseudocode.md)
+- Part 1: Pseudocode, also in [`docs/part1_pseudocode.md`](docs/part1_pseudocode.md)
 - Part 4: Comparison table (Word)
 - Part 5: Peer review (Word)
 
