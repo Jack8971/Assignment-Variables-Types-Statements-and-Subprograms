@@ -3,6 +3,7 @@
 
 #include <utility>
 
+// [EXTERNAL-MODIFIED] Majority of code written by me apart from the comments or some code completion by co pilot.
 //To string function for the gender enum class. This is used to display the gender in a human-readable format.
 std::string toString(Gender gender) {
     switch (gender) {

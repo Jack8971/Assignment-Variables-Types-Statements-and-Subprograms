@@ -1,3 +1,4 @@
+// [EXTERNAL-MODIFIED] All the code was written by me but I had copilot to auto complete and add proper concise comments to the code
 #ifndef PERSON_H
 #define PERSON_H
 
