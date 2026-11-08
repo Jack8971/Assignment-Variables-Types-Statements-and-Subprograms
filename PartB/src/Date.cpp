@@ -1,6 +1,6 @@
 #include "Date.h" //Include the header file for the Date class
 
-//[EXTERNAL MODIFIED] The document was written by me but the comments and auto complete were aided by Copilot.
+//[EXTERNAL MODIFIED] The document was written by kunj but the comments and auto complete were aided by Copilot.
 #include <cctype> //Include the cctype library for character handling functions 
 #include <ctime> //Include the ctime library for time functions
 #include <iomanip> //Include the iomanip library for input/output manipulators

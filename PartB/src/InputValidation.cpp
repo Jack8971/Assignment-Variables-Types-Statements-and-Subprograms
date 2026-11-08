@@ -1,4 +1,4 @@
-// [EXTERNAL-MODIFIED] All the code was written by me but I had copilot to auto complete and add proper concise comments to the code and properly arrange it
+// [EXTERNAL-MODIFIED] All the code was written by Kunj but I had copilot to auto complete and add proper concise comments to the code and properly arrange it
 #include "InputValidation.h"
 
 #include <cctype>
