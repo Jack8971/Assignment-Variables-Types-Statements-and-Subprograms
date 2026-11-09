@@ -10,15 +10,25 @@
 #include "InputValidation.h"
 
 namespace {
-// Thrown when stdin ends (Ctrl+D / end of a redirected file) mid-prompt.
-struct EndOfInput {};
+    // Thrown when stdin ends (Ctrl+D / end of a redirected file) mid-prompt.
+    struct EndOfInput {};
 
-const char* const kDuplicateMessage =
-    "A student with the same name and date of birth already exists.";
+    const char* const kDuplicateMessage =
+        "A student with the same name and date of birth already exists.";
 } // namespace
 
-ConsoleUI::ConsoleUI(EnrollmentManager& manager, std::istream& in, std::ostream& out)
-    : manager_(manager), in_(in), out_(out) {}
+ConsoleUI::ConsoleUI(EnrollmentManager& manager, CsvStorage* storage,
+                     std::istream& in, std::ostream& out)
+    : manager_(manager), storage_(storage), in_(in), out_(out) {}
+
+void ConsoleUI::saveChanges() {
+    if (storage_ == nullptr) {
+        return; // in-memory mode
+    }
+    if (!storage_->save(manager_)) {
+        out_ << "Warning: could not save data to " << storage_->filePath() << ".\n";
+    }
+}
 
 // ---------------------------------------------------------------- input helpers
 
@@ -212,6 +222,7 @@ void ConsoleUI::addStudent() {
                                           dateOfBirth, gender, gpa, semester,
                                           program, courses);
     out_ << "Student added successfully with ID: " << newId << "\n";
+    saveChanges();
 }
 
 void ConsoleUI::viewAllStudents() {
@@ -239,6 +250,7 @@ void ConsoleUI::modifyStudent() {
 void ConsoleUI::modifyFields(Student& student) {
     bool editing = true;
     while (editing) {
+        bool changed = false;
         out_ << "\nCurrent record:\n";
         printPerson(student);
         out_ << "Which field do you want to modify?\n"
@@ -262,6 +274,7 @@ void ConsoleUI::modifyFields(Student& student) {
                 }
                 student.setFirstName(std::move(newFirst));
                 out_ << "First name updated.\n";
+                changed = true;
                 break;
             }
             case 2: {
@@ -273,6 +286,7 @@ void ConsoleUI::modifyFields(Student& student) {
                 }
                 student.setLastName(std::move(newLast));
                 out_ << "Last name updated.\n";
+                changed = true;
                 break;
             }
             case 3: {
@@ -284,31 +298,41 @@ void ConsoleUI::modifyFields(Student& student) {
                 }
                 student.setDateOfBirth(newDob);
                 out_ << "Date of birth updated.\n";
+                changed = true;
                 break;
             }
             case 4:
                 student.setGender(promptChoice("Gender:", kAllGenders));
                 out_ << "Gender updated.\n";
+                changed = true;
                 break;
             case 5:
                 student.setGpa(promptGpa());
                 out_ << "GPA updated.\n";
+                changed = true;
                 break;
             case 6:
                 student.setCurrentSemester(promptSemester());
                 out_ << "Current semester updated.\n";
+                changed = true;
                 break;
             case 7:
                 student.setProgram(promptChoice("Program:", kAllPrograms));
                 out_ << "Program updated.\n";
+                changed = true;
                 break;
             case 8:
                 student.setNumberOfCourses(promptNumberOfCourses());
                 out_ << "Number of courses updated.\n";
+                changed = true;
                 break;
             case 0:
                 editing = false;
                 break;
+        }
+
+        if (changed) {
+            saveChanges();
         }
     }
     out_ << "Modification finished.\n";
@@ -328,6 +352,7 @@ void ConsoleUI::removeStudent() {
     }
     manager_.removeStudent(id);
     out_ << "Student " << id << " removed.\n";
+    saveChanges();
 }
 
 void ConsoleUI::sortStudents() {
