@@ -154,3 +154,21 @@ std::size_t EnrollmentManager::countInProgram(Program program) const {
             return entry.second.program() == program;
         }));
 }
+
+// Persistence methods: used by the file I/O layer to restore a student record
+bool EnrollmentManager::restoreStudent(Student student) {
+    const int id = student.studentId();
+    const bool inserted = students_.emplace(id, std::move(student)).second;
+    if (inserted && id >= nextStudentId_) {
+        nextStudentId_ = id + 1;
+    }
+    return inserted;
+}
+
+int EnrollmentManager::nextStudentId() const { return nextStudentId_; }
+
+void EnrollmentManager::setNextStudentId(int nextId) {
+    if (nextId > nextStudentId_) {
+        nextStudentId_ = nextId;
+    }
+}

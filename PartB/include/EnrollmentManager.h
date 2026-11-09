@@ -45,6 +45,11 @@ public:
     std::size_t studentCount() const;
     double averageGpa() const;
     std::size_t countInProgram(Program program) const;
+    
+    //Persistence methods
+    bool restoreStudent(Student student);
+    int nextStudentId() const;
+    void setNextStudentId(int nextId);
 
 private:
     std::map<int, Student> students_;
