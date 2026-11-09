@@ -49,7 +49,7 @@ std::optional<Date> Date::parse(const std::string& text) {//Parse the date from 
         return std::nullopt;
     }
     try {
-        return Date(std::stoi(yearText), std::stoi(monthText), std::stoi(dayText));
+        return Date(std::stoi(dayText), std::stoi(monthText), std::stoi(yearText));
     } catch (const std::invalid_argument&) {
         return std::nullopt; // right shape, but not a real date
     }
@@ -63,7 +63,7 @@ Date Date::today() {//Get the current local date
 #else
     localtime_r(&now, &local);
 #endif
-    return Date(local.tm_year + 1900, local.tm_mon + 1, local.tm_mday);
+    return Date(local.tm_mday, local.tm_mon + 1, local.tm_year + 1900);
 }
 
 //Getters for the year, month, and day

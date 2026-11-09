@@ -1,0 +1,3 @@
+nextStudentId=1002
+id,firstName,lastName,dateOfBirth,gender,gpa,currentSemester,program,numberOfCourses
+1001,Kunj,Patel,2001-11-25,Male,3.7,4,Software Development,9
