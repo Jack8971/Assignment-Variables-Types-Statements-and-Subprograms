@@ -7,7 +7,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(enrollment
     src/main.cpp src/Date.cpp src/Person.cpp src/Student.cpp
-    src/InputValidation.cpp src/EnrollmentManager.cpp src/ConsoleUI.cpp)
+    src/InputValidation.cpp src/EnrollmentManager.cpp src/ConsoleUI.cpp src/CsvStorage.cpp)
 target_include_directories(enrollment PRIVATE include)
 target_compile_options(enrollment PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>:/W4>
