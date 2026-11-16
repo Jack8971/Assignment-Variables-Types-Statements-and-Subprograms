@@ -1,5 +1,4 @@
-# [EXTERNAL-MODIFIED] File header and some comments helped by Cursor.
-
+# Cursor was used to help format the file header, clean up comments,
 """
 student_dialog.py
 

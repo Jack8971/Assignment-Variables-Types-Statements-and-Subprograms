@@ -1,9 +1,10 @@
-# [EXTERNAL-MODIFIED] File header and some comments helped by Cursor.
+# Cursor was used to help format the file header, clean up comments, 
+# and structure the console menu logic ported from ConsoleUI.cpp.
 """
 main_window.py
 
 This file handles the menu and user interface for the SAIT Enrollment Management System.
-It is based on PartB ConsoleUI.cpp.
+It is based on PartB ConsoleUI.cpp. 
 
 It contains:
 - MainWindow class with the main menu loop
@@ -226,8 +227,8 @@ class MainWindow:
         student = self.prompt_existing_student()
         if student == None:
             return
-        print(student.describe())  # show them who they are deleting
-        student_id = student.student_id  # keep id before the object is gone
+        print(student.describe())  
+        student_id = student.student_id 
         if not dialog.prompt_yes_no("Are you sure you want to remove this student? (y/n): "):
             print("Removal cancelled.")
             return 

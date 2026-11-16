@@ -1,4 +1,4 @@
-# [EXTERNAL-MODIFIED] File header and some comments helped by Cursor.
+#file header and some comments helped by Cursor
 """
 main.py
 

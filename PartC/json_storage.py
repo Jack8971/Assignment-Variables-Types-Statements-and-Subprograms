@@ -1,4 +1,5 @@
-# [EXTERNAL-MODIFIED] First time converting CsvStorage to JSON/Python so I used an AI assistant Cursor to help with the logic 
+# First time converting CsvStorage to JSON in Python, 
+# so I used Cursor to assist with the JSON serialization and file-handling logic
 """
 json_storage.py
 
