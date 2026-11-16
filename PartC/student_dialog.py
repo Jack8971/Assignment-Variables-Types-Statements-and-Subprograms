@@ -1,5 +1,5 @@
-# [EXTERNAL-MODIFIED] File header and some comments helped by AI (Cursor).
-# Prompt helpers based on PartB ConsoleUI.cpp and reviewed/adapted by me.
+# [EXTERNAL-MODIFIED] File header and some comments helped by Cursor.
+
 """
 student_dialog.py
 
