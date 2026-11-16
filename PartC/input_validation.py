@@ -1,3 +1,4 @@
+
 """
 input_validation.py
 This file contains functions for validating user input in the SAIT Enrollment Management System.
@@ -45,7 +46,7 @@ def validate_name(name):
   if len(name) > MAX_NAME_LENGTH:
         return f"Name cannot be longer than {MAX_NAME_LENGTH} characters."
   for char in name:
-    if not all(char.isalpha() or char in [" ", "-","'"]):
+    if not (char.isalpha() or char in [" ", "-", "'"]):
         return "Name can only contain letters, spaces, apostrophes and hyphens. "
   return None
     
@@ -59,7 +60,9 @@ def validate_date_of_birth(date_of_birth):
   if date_of_birth > today:
     return "Date of birth cannot be a future date."
 
-  age = (today.year - date_of_birth.year - ( today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+  age = today.year - date_of_birth.year
+  if (today.month, today.day) < (date_of_birth.month, date_of_birth.day):
+    age -= 1
   if age < MIN_AGE:
     return (f"Student must be at least {MIN_AGE} years old.")
   if age > MAX_AGE:
