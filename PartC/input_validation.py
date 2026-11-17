@@ -58,7 +58,7 @@ def validate_date_of_birth(date_of_birth):
   today = date.today()
 
   if date_of_birth > today:
-    return "Date of birth cannot be a future date."
+    return "Date of birth cannot be in the future."
 
   age = today.year - date_of_birth.year
   if (today.month, today.day) < (date_of_birth.month, date_of_birth.day):
