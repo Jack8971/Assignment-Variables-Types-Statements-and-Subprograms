@@ -1,5 +1,5 @@
-# [externally-modified] comments 
-# [Original]
+# [externally-modified]
+# [Original] Copilot used for comments
 """
 input_validation.py
 This file contains functions for validating user input in the SAIT Enrollment Management System.
