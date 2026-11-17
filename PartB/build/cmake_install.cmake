@@ -1,4 +1,4 @@
-# Install script for directory: C:/VSC_FIles/Assignment-Variables-Types-Statements-and-Subprograms/PartB
+# Install script for directory: C:/Users/jacks/Documents/SAIT/Software_Development_Degree_HardDrive/Fall_2026/CMPP-3020-BSA/Assignment-Variables-Types-Statements-and-Subprograms/PartB
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,13 +34,13 @@ endif()
 
 # Set path to fallback-tool for dependency-resolution.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/msys64/ucrt64/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Users/jacks/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/bin/objdump.exe")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/VSC_FIles/Assignment-Variables-Types-Statements-and-Subprograms/PartB/build/install_local_manifest.txt"
+  file(WRITE "C:/Users/jacks/Documents/SAIT/Software_Development_Degree_HardDrive/Fall_2026/CMPP-3020-BSA/Assignment-Variables-Types-Statements-and-Subprograms/PartB/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -56,6 +56,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/VSC_FIles/Assignment-Variables-Types-Statements-and-Subprograms/PartB/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "C:/Users/jacks/Documents/SAIT/Software_Development_Degree_HardDrive/Fall_2026/CMPP-3020-BSA/Assignment-Variables-Types-Statements-and-Subprograms/PartB/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

@@ -1,5 +1,6 @@
-# Cursor was used to help format the file header, clean up comments, 
+#[externally-modified] Cursor was used to help format the file header, clean up comments, 
 # and structure the console menu logic ported from ConsoleUI.cpp.
+#[original] everythign else was done by the team
 """
 main_window.py
 
@@ -9,7 +10,7 @@ It is based on PartB ConsoleUI.cpp.
 It contains:
 - MainWindow class with the main menu loop
 - Methods to add, view, search, modify, remove, sort, and filter students
-- Methods to show statistics and save changes to the JSON file
+- Methods to show statistics and save changes to the CSV file
 """
 
 import input_validation as validation  
@@ -20,7 +21,7 @@ import student_dialog as dialog
 class MainWindow:
     def __init__(self, manager, storage=None):
         self.manager = manager   # EnrollmentManager with the student dict
-        self.storage = storage   # JsonStorage, or None if --no-persist
+        self.storage = storage   # CsvStorage, or None if --no-persist
 
     def save_changes(self):
         if self.storage == None:
@@ -131,7 +132,7 @@ class MainWindow:
             first_name, last_name, dob, gender, gpa, semester, program, courses
         )
         print("Student added successfully with ID:", new_id)
-        self.save_changes()  # write to json right away
+        self.save_changes()  # write to the CSV file right away
 
     def view_all_students(self):
         self.print_student_list("All Students", self.get_students_sorted_by_id())

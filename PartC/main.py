@@ -1,4 +1,5 @@
-#file header and some comments helped by Cursor
+# [externally-modified] comments were added by Cursor
+# [Original] all the code was completed by a member of the team
 """
 main.py
 
@@ -6,19 +7,19 @@ This file is the starting point of the Python enrollment program.
 It is based on PartB main.cpp.
 
 It contains:
-- main() which loads the JSON data file (optional)
+- main() which loads the CSV data file (optional)
 - Creates the EnrollmentManager and MainWindow
 - Starts the menu loop
 """
 
 import sys
 from enrollment_manager import EnrollmentManager
-from json_storage import JsonStorage
+from csv_storage import CsvStorage
 from main_window import MainWindow
 
 
 def main():
-    data_file = "../data/students.json"
+    data_file = "students.csv"
     persist = True
 
     # check if user passed any command line args
@@ -34,7 +35,7 @@ def main():
 
     # load saved students if persistence is on
     if persist:
-        storage = JsonStorage(data_file)
+        storage = CsvStorage(data_file)
         result = storage.load(manager)
         if result.file_found:
             print("Loaded", result.loaded, "student(s) from", data_file + ".")

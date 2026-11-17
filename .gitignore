@@ -1,5 +1,6 @@
+# C++ / CMake build output
+build/
+
+# Python cache
 __pycache__/
 *.pyc
-PartB/build/
-*.exe
-*.obj

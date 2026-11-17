@@ -1,4 +1,5 @@
-
+# [externally-modified] comments 
+# [Original]
 """
 input_validation.py
 This file contains functions for validating user input in the SAIT Enrollment Management System.
@@ -11,6 +12,7 @@ Functions:
 - validate_semester(semester): Validates that the semester is in the correct format and betweem min and max semester. 
 - validate_number_of_courses(num_courses): Validates that the number of courses is a positive integer.
 """
+import math
 from datetime import date
 
 #Validation Constants so messages and checks can never disagree.
@@ -34,7 +36,10 @@ def parse_int(text):
 
 def parse_double(text):
   try:
-    return float(text.strip())
+    value = float(text.strip())
+    if not math.isfinite(value):
+      return None
+    return value
   #Return None instead of throwing an error
   except ValueError:
     return None
@@ -42,12 +47,12 @@ def parse_double(text):
 #Name Validation
 def validate_name(name):
   if not name:
-    return "Name can not be empty."
+    return "Name cannot be empty."
   if len(name) > MAX_NAME_LENGTH:
         return f"Name cannot be longer than {MAX_NAME_LENGTH} characters."
   for char in name:
     if not (char.isalpha() or char in [" ", "-", "'"]):
-        return "Name can only contain letters, spaces, apostrophes and hyphens. "
+        return "Name may only contain letters, spaces, hyphens and apostrophes."
   return None
     
     
@@ -83,9 +88,6 @@ def validate_semester(semester):
           
 #Course Validation
 def validate_number_of_courses(number_of_courses):
-  if number_of_courses > MAX_COURSES:
-   return f"You can only have up to {MAX_COURSES}."
-  if number_of_courses < MIN_COURSES:
-    return f"You must have at least {MIN_COURSES}."
+  if number_of_courses < MIN_COURSES or number_of_courses > MAX_COURSES:
+    return f"Number of courses must be between {MIN_COURSES} and {MAX_COURSES}."
   return None
-

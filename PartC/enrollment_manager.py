@@ -1,3 +1,4 @@
+# [Original]
 """
 enrollment_manager.py
 
@@ -76,7 +77,7 @@ class EnrollmentManager:
         return [
             student
             for student in self.students.values()
-            if name in student.first_name.lower() or name in student.last_name.lower()
+            if name in student.full_name().lower()
         ]
 
     def filter_by_program(self, program):
@@ -91,12 +92,12 @@ class EnrollmentManager:
     def sort_by_gpa_descending(self):
         #Return students ordered from highest GPA to lowest
         return sorted(
-            self.students.values(), key=lambda student: student.gpa, reverse=True
+            self.students.values(), key=lambda student: (-student.gpa, student.last_name.lower(), student.first_name.lower(), student.student_id)
         )
 
     def sorted_by_last_name(self):
         #Return students sorted by last name
-        return sorted(self.students.values(), key=lambda student: student.last_name)
+        return sorted(self.students.values(), key=lambda student: (student.last_name.lower(), student.first_name.lower(), student.student_id))
 
     def student_count(self):
         return len(self.students)
