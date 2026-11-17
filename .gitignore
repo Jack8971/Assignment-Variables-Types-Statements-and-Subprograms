@@ -1,6 +1,8 @@
 # C++ / CMake build output
 build/
+PartB/build/
 
 # Python cache
 __pycache__/
 *.pyc
+*.exe
