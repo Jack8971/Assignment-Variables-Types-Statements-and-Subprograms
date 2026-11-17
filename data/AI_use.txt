@@ -1,5 +1,0 @@
-Ai Usage:
-
-AI was used to help get sample Data [External Modified Data] on students.sample.json
-
-Ai was not used on students.json [Original]

@@ -1,0 +1,7 @@
+nextStudentId=1006
+id,firstName,lastName,dateOfBirth,gender,gpa,currentSemester,program,numberOfCourses
+1001,Amara,Okafor,2004-03-15,Female,3.5,2,Software Development,5
+1002,Liam,O'Connor,2003-11-02,Male,3,1,Information Systems,6
+1003,Mei-Ling,Chen,2001-07-28,Female,3.85,4,Cloud Computing,4
+1004,Jordan,Singh,2000-02-29,Non-binary,2.75,3,Computer Science,5
+1005,Sofia,Martínez,1998-09-09,Prefer not to say,4,6,Artificial Intelligence,3
