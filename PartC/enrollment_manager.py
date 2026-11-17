@@ -1,4 +1,4 @@
-# [Original]
+# [Original] Copilot used for comments
 """
 enrollment_manager.py
 
